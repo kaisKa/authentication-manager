@@ -1,0 +1,10 @@
+{
+  "realm": "provider",
+  "auth-server-url": "http://3.28.128.221:8080/auth",
+  "resource": "provider-app",
+  "ssl-required": "none",
+  "credentials": {
+    "secret": "Mk1AkzvLrtoq4E6OudaOPTRMWfa5QwvX"
+  },
+  "public-client": true
+}
