@@ -1,0 +1,10 @@
+{
+  "realm": "clinic",
+  "auth-server-url": "http://3.28.128.221:8080/auth",
+  "resource": "clinic-app",
+  "ssl-required": "none",
+  "credentials": {
+    "secret": "nQteGleYl701bna1yU9RACkAZSjKEsIB"
+  },
+  "public-client": true
+}

@@ -1,0 +1,10 @@
+{
+  "realm": "master",
+  "auth-server-url": "http://3.28.128.221:8080/auth",
+  "resource": "admin-cli",
+  "credentials": {
+    "secret": "nQteGleYl701bna1yU9RACkAZSjKEsIB"
+  },
+  "ssl-required": "none",
+  "public-client": true
+}

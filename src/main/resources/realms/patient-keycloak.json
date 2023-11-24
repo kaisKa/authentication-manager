@@ -1,0 +1,10 @@
+{
+	"realm": "patient",
+	"auth-server-url": "http://3.28.128.221:8080/auth",
+	"resource": "patient-app",
+	"ssl-required": "none",
+	"credentials": {
+		"secret": "mokGL1n0kry7saJcVwRGh6mwuQpudHpM"
+	},
+	"public-client": true
+}

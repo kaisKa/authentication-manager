@@ -1,0 +1,207 @@
+server:
+  port: 7777
+  forward-headers-strategy: framework
+
+spring:
+  base_url: /api/v1/
+  auth-service-url: http://hygiai-alb-dev-1496441871.ap-south-1.elb.amazonaws.com
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_host:hygai-auth.czgaep964x5p.me-central-1.rds.amazonaws.com:5432}/hygiai_auth-staging
+    username: ${DB_username:dev}
+    password: ${DB_password:administrator}
+    hikari:
+      pool-name: Hikari
+      connection-timeout: 30000
+      idle-timeout: 600000
+      maximum-pool-size: 2
+      minimum-idle: 1
+      max-lifetime: 1000
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto:   update #create # update # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+  sql:
+    init:
+      mode: always
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    format:
+      date: MM-dd-yyyy
+      date-time: MM-dd-yyyy HH:mm:ss
+  #  mail:
+  #    host: smtp.gmail.com
+  #    port: 587
+  #    username: alkotamy@avafive.com
+  #    password: xpbetkwxkcbcsxaw
+  #    properties:
+  #      mail:
+  #        smtp:
+  #          auth: true
+  #          starttls:
+  #            enable: true
+
+  mail:
+    host: email-smtp.ap-south-1.amazonaws.com
+    username: AKIAUX7OLJWEE3UNGGMN
+    password: BJhHdvsvCiH07N0w9zjVNy8FYs0Tx2JerHBLz8XUDVCi
+    port: 587
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          port: 587
+          auth: true
+          starttls:
+            enable: true
+            required: true
+      sender: alkotamy@avafive.com
+#  jackson:
+#    date-format: "MM-dd-yyyy HH:mm:ss"
+#    time-zone: "GMT+8
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: ${keycloak.serverUrl}/auth/realms/hygai/protocol/openid-connect/certs
+
+# api docs config
+springdoc:
+  version: v1
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    operationsSorter: method
+    disable-swagger-default-url: false
+    urls:
+      - name: auth-api
+        url: http://hygiai-alb-dev-1496441871.ap-south-1.elb.amazonaws.com/api-docs #https://atf64jm6yi.execute-api.ap-south-1.amazonaws.com/dev/authentication_manager/api-docs
+      - name: cma-api
+        url: https://atf64jm6yi.execute-api.ap-south-1.amazonaws.com/dev/hygai-cma-api/api-docs
+      - name: health-api
+        url: https://atf64jm6yi.execute-api.ap-south-1.amazonaws.com/dev/hygiai-health-api/api-docs
+      - name: booking-api
+        url: https://atf64jm6yi.execute-api.ap-south-1.amazonaws.com/dev/hygiai-booking-api/api-docs
+# for heath checking
+management:
+  endpoint:
+    health:
+      show-details: always
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: YOUR_ACCESS_KEY
+      secret-key: YOUR_SECRET_KEY
+    topic_arn: "arn:aws:sns:us-east-1:758362591119:codezup-topic"
+
+twilio:
+  service_id: VA726a6eede4dfd83e8d85c1944fd2446e
+  account_id: ACfe441ea920dbebc37378e1932278eb83
+  auth_token: 4bb87b3f711dc109c569d038cffa7bc4
+  #  service_id: VAe55f88eef6b76a35c0df1d7cf1094960
+  #  account_id: AC34e902d79472875b7b618af13602eebe
+  #  auth_token: 7a18e295839057d99338106778e3f02c
+  SendUrl: https://verify.twilio.com/v2/Services/${twilio.service_id}/Verifications
+  checkUrl: https://verify.twilio.com/v2/Services/${twilio.service_id}/VerificationCheck
+
+#keycloak:
+#  enabled: true
+#  auth-server-url: http://localhost:8180/auth
+#  realm: patient
+#  resource: patient-app
+#  credentials:
+#    secret: q47OPWaZ8CUEu7lf6175AWoq4rUoNYom
+#  public-client: false
+#  principal-attribute: preferred_username
+#  config:
+#    resolver: path
+#    userName: mobile_app
+#    password: admin
+#    resteasy_pool_size: 10
+#    token: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/token
+#    routes:
+#      token: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/token
+#      logout: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/logout
+#      authorization_code: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/auth
+#      user_info: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/userinfo
+#      changePassword: ${keycloak.auth-server-url}/admin/realms/####/users/openid-connect/userinfo
+#      resetPassword: ${keycloak.auth-server-url}/admin/realms/####/users/
+#      cert: ${keycloak.auth-server-url}/realms/####/protocol/openid-connect/certs
+
+kcloak:
+  enabled: true
+  auth-server-url: http://3.28.128.221:8888/auth
+  config:
+    resolver: path
+    userName: admin
+    password: admin
+    resteasy_pool_size: 10
+    token: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/token
+    routes:
+      token: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/token
+      logout: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/logout
+      authorization_code: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/auth
+      user_info: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/userinfo
+      changePassword: ${kcloak.auth-server-url}/admin/realms/####/users/openid-connect/userinfo
+      resetPassword: ${kcloak.auth-server-url}/admin/realms/####/users/
+      cert: ${kcloak.auth-server-url}/realms/####/protocol/openid-connect/certs
+
+
+
+
+http_source:
+  cert-path: "dfsf"
+  cert-pass: "ddfsdf"
+
+mail_service:
+  url: https://l2ucrcmk00.execute-api.me-central-1.amazonaws.com/dev?email=rishi%40avafive.com&subject=Registration%20Completed
+
+
+  #configure security with keycloak
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: hygiai_app-client
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8080/login/oauth2/code/hygiai_app-clien
+#            scope:
+#              - openid
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8080/realms/hygiai_realm
+#            user-name-attribute: preferred_username
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8080/realms/hygiai_realm
+
+
+
+
+
+
+
+
