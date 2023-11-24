@@ -12,14 +12,21 @@ the services is usecase of using Keycloak an IAM tool resposible of generating J
 the service show case of a multi tenant appplication 
 
 what is a multi tenant application ?? 
-is a system the has more than one kind of groub of user thad need to manage thier resources without affecting other tenant resources,
+It is a system the has more than one kind of groub of user thad need to manage thier resources without affecting other tenant resources,
 think of that as a resedital building, each flat belong to an owner 'user' 
 each flat has it own electricity and warter supplyments, 
 also no budy can enter a flat without a unique key "with in our service will represented by the JWT token"
 
+
+In the following lines will be explaing how to configure the multi tenancy with keycloak 
+
+to config a spring boot application we must use spring security to manage te securty of our applation
+
 ## soucre code
 
 ### config folder
+
+
 
 You will find 
 
