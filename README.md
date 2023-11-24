@@ -4,7 +4,22 @@
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Briefly, this is a microsevice of a bigger system responsible for the authentication part of the system performe the basic Identification and Authentication functionality.
+
+the services is use case of Keycloak an IAM tool resposible of generating JWT and manage it, store passwords and manage them, manage roles, mange users and client.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
