@@ -6,14 +6,25 @@
 
 Briefly, this is a microsevice of a bigger system responsible for the authentication part of the system performe the basic Identification and Authentication functionality.
 
-the services is use case of Keycloak an IAM tool resposible of generating JWT and manage it, store passwords and manage them, manage roles, mange users and client.
+the services is usecase of using Keycloak an IAM tool resposible of generating JWT and manage it, store passwords and manage them, manage roles, mange users and client.
 
 
+the service show case of a multi tenant appplication 
 
+what is a multi tenant application ?? 
+is a system the has more than one kind of groub of user thad need to manage thier resources without affecting other tenant resources,
+think of that as a resedital building, each flat belong to an owner 'user' 
+each flat has it own electricity and warter supplyments, 
+also no budy can enter a flat without a unique key "with in our service will represented by the JWT token"
 
+## soucre code
 
+### config folder
 
+You will find 
 
+### service folder 
+You will find ####Authservice class 
 
 
 
